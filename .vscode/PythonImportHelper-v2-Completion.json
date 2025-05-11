@@ -1,0 +1,1014 @@
+[
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "functional",
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "isExtraImport": true,
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "functional",
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "isExtraImport": true,
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "functional",
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "isExtraImport": true,
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "functional",
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "isExtraImport": true,
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "functional",
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "isExtraImport": true,
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "torch.optim",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.optim",
+        "description": "torch.optim",
+        "detail": "torch.optim",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "textwrap",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "textwrap",
+        "description": "textwrap",
+        "detail": "textwrap",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "get_batch",
+        "kind": 2,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "def get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果\n    y = torch.stack([data[i + 1 : i + block_size + 1] for i in ix])\n    x, y = x.to(device), y.to(device)\n    # token_list=x.tolist()",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "batch_size",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "batch_size = 3\n# 每个字符串的长度是多少\nblock_size = 4\nn_embd = 3\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "block_size",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "block_size = 4\nn_embd = 3\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "n_embd",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "n_embd = 3\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "device",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "file_name",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "file_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "chars",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "chars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "vocab_size",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "vocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "stoi",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "stoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "itos",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "itos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "encode",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "encode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "decode",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "decode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "data = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "spilt",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "spilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "train_data",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "train_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "test_data",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "test_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果\n    y = torch.stack([data[i + 1 : i + block_size + 1] for i in ix])",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "token_embedding_table",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "token_embedding_table = nn.Embedding(vocab_size, n_embd, device=device)\ntoken_embd = token_embedding_table(x)\nprint(token_embd)\nx_list = x.tolist()\nfor str_list in x_list:\n    decode_str = decode(str_list)\n    print(decode_str)\nprint(\"-\" * 16, \"位置信息\", \"-\" * 16)\nposition_embedding_table = nn.Embedding(block_size, n_embd, device=device)\n# 创建位置信息张量，即[0 ~ block_size-1]",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "token_embd",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "token_embd = token_embedding_table(x)\nprint(token_embd)\nx_list = x.tolist()\nfor str_list in x_list:\n    decode_str = decode(str_list)\n    print(decode_str)\nprint(\"-\" * 16, \"位置信息\", \"-\" * 16)\nposition_embedding_table = nn.Embedding(block_size, n_embd, device=device)\n# 创建位置信息张量，即[0 ~ block_size-1]\nposition_idx = torch.arange(block_size).to(device)",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "x_list",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "x_list = x.tolist()\nfor str_list in x_list:\n    decode_str = decode(str_list)\n    print(decode_str)\nprint(\"-\" * 16, \"位置信息\", \"-\" * 16)\nposition_embedding_table = nn.Embedding(block_size, n_embd, device=device)\n# 创建位置信息张量，即[0 ~ block_size-1]\nposition_idx = torch.arange(block_size).to(device)\nposition_embd = position_embedding_table(position_idx)\nprint(position_embd)",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "position_embedding_table",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "position_embedding_table = nn.Embedding(block_size, n_embd, device=device)\n# 创建位置信息张量，即[0 ~ block_size-1]\nposition_idx = torch.arange(block_size).to(device)\nposition_embd = position_embedding_table(position_idx)\nprint(position_embd)",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "position_idx",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "position_idx = torch.arange(block_size).to(device)\nposition_embd = position_embedding_table(position_idx)\nprint(position_embd)",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "position_embd",
+        "kind": 5,
+        "importPath": "03_data_group",
+        "description": "03_data_group",
+        "peekOfCode": "position_embd = position_embedding_table(position_idx)\nprint(position_embd)",
+        "detail": "03_data_group",
+        "documentation": {}
+    },
+    {
+        "label": "size",
+        "kind": 5,
+        "importPath": "04_embedding",
+        "description": "04_embedding",
+        "peekOfCode": "size = 10\nn_embedding = 3  # embedding的维度\nembedding_table = nn.Embedding(\n    size, n_embedding\n)  # size表示token数量，即有多少个元素需要进行embedding(表映射)\n# 这里0~9就是token，因为之前我们是把文本处理成有序集合，token本身就是数组索引\nidx = torch.arange(size)\nprint(embedding_table(idx))",
+        "detail": "04_embedding",
+        "documentation": {}
+    },
+    {
+        "label": "n_embedding",
+        "kind": 5,
+        "importPath": "04_embedding",
+        "description": "04_embedding",
+        "peekOfCode": "n_embedding = 3  # embedding的维度\nembedding_table = nn.Embedding(\n    size, n_embedding\n)  # size表示token数量，即有多少个元素需要进行embedding(表映射)\n# 这里0~9就是token，因为之前我们是把文本处理成有序集合，token本身就是数组索引\nidx = torch.arange(size)\nprint(embedding_table(idx))",
+        "detail": "04_embedding",
+        "documentation": {}
+    },
+    {
+        "label": "embedding_table",
+        "kind": 5,
+        "importPath": "04_embedding",
+        "description": "04_embedding",
+        "peekOfCode": "embedding_table = nn.Embedding(\n    size, n_embedding\n)  # size表示token数量，即有多少个元素需要进行embedding(表映射)\n# 这里0~9就是token，因为之前我们是把文本处理成有序集合，token本身就是数组索引\nidx = torch.arange(size)\nprint(embedding_table(idx))",
+        "detail": "04_embedding",
+        "documentation": {}
+    },
+    {
+        "label": "idx",
+        "kind": 5,
+        "importPath": "04_embedding",
+        "description": "04_embedding",
+        "peekOfCode": "idx = torch.arange(size)\nprint(embedding_table(idx))",
+        "detail": "04_embedding",
+        "documentation": {}
+    },
+    {
+        "label": "LanguageModel",
+        "kind": 6,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "class LanguageModel(nn.Module):\n    def __init__(self):\n        super().__init__()\n    def forward(self, idx, targets=None):\n        B, T = idx.shape  # B= batch_size,T=block_size\n        # 这里由于定义的是傻瓜模型，所以直接使用 B*T*vocab_size的归一化随机变量代替结果（本质上没用到输入的内容）\n        random_tensor = torch.rand(B, T, vocab_size)\n        # 正则化\n        logits = random_tensor / random_tensor.sum(dim=-1, keepdim=True)\n        loss = None",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "get_batch",
+        "kind": 2,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "def get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果\n    y = torch.stack([data[i + 1 : i + block_size + 1] for i in ix])\n    x, y = x.to(device), y.to(device)\n    # token_list=x.tolist()",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "batch_size",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "batch_size = 3\n# 每个字符串的长度是多少\nblock_size = 16\nn_embd = 3\nwrap_width = 20\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "block_size",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "block_size = 16\nn_embd = 3\nwrap_width = 20\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "n_embd",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "n_embd = 3\nwrap_width = 20\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "wrap_width",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "wrap_width = 20\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "device",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "file_name",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "file_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "chars",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "chars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "vocab_size",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "vocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "stoi",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "stoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "itos",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "itos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "encode",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "encode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "decode",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "decode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "data = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "spilt",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "spilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "train_data",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "train_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "test_data",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "test_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果\n    y = torch.stack([data[i + 1 : i + block_size + 1] for i in ix])",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "model = LanguageModel()\nmodel = model.to(device)\nmax_new_tokens = 500\nstart_idx = random.randint(0, len(test_data) - block_size - max_new_tokens)\n# 上文内容\ncontext = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "model = model.to(device)\nmax_new_tokens = 500\nstart_idx = random.randint(0, len(test_data) - block_size - max_new_tokens)\n# 上文内容\ncontext = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "max_new_tokens",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "max_new_tokens = 500\nstart_idx = random.randint(0, len(test_data) - block_size - max_new_tokens)\n# 上文内容\ncontext = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "start_idx",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "start_idx = random.randint(0, len(test_data) - block_size - max_new_tokens)\n# 上文内容\ncontext = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "context",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "context = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens\n]\nreal_next_tokens_str = decode(real_next_tokens[0].tolist())",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "context_str",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "context_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens\n]\nreal_next_tokens_str = decode(real_next_tokens[0].tolist())\nwrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "wrapped_context_str",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "wrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens\n]\nreal_next_tokens_str = decode(real_next_tokens[0].tolist())\nwrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文\ngenerated_tokens = model.generate(context, max_new_tokens)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "real_next_tokens",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "real_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens\n]\nreal_next_tokens_str = decode(real_next_tokens[0].tolist())\nwrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文\ngenerated_tokens = model.generate(context, max_new_tokens)\ngenerated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "real_next_tokens_str",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "real_next_tokens_str = decode(real_next_tokens[0].tolist())\nwrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文\ngenerated_tokens = model.generate(context, max_new_tokens)\ngenerated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "wrapped_real_next_tokens_str",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "wrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文\ngenerated_tokens = model.generate(context, max_new_tokens)\ngenerated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)\nprint(\"真实内容：\")",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "generated_tokens",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "generated_tokens = model.generate(context, max_new_tokens)\ngenerated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)\nprint(\"真实内容：\")\nprint(wrapped_real_next_tokens_str)\nx, y = get_batch(\"train\")",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "generated_str",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "generated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)\nprint(\"真实内容：\")\nprint(wrapped_real_next_tokens_str)\nx, y = get_batch(\"train\")\nmodel = model.to(device)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "wrapped_generated_str",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "wrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)\nprint(\"真实内容：\")\nprint(wrapped_real_next_tokens_str)\nx, y = get_batch(\"train\")\nmodel = model.to(device)\nout = model(x)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "model = model.to(device)\nout = model(x)\nprint(out)\n# 词嵌入表，这里词表中有多少词就有多少embedding向量\n# print(\"-\" * 16, \"词表信息\", \"-\" * 16)\n# token_embedding_table = nn.Embedding(vocab_size, n_embd, device=device)\n# token_embd = token_embedding_table(x)\n# print(token_embd)\n# x_list = x.tolist()\n# for str_list in x_list:",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "out",
+        "kind": 5,
+        "importPath": "05_stupid_model",
+        "description": "05_stupid_model",
+        "peekOfCode": "out = model(x)\nprint(out)\n# 词嵌入表，这里词表中有多少词就有多少embedding向量\n# print(\"-\" * 16, \"词表信息\", \"-\" * 16)\n# token_embedding_table = nn.Embedding(vocab_size, n_embd, device=device)\n# token_embd = token_embedding_table(x)\n# print(token_embd)\n# x_list = x.tolist()\n# for str_list in x_list:\n#     decode_str = decode(str_list)",
+        "detail": "05_stupid_model",
+        "documentation": {}
+    },
+    {
+        "label": "LanguageModel",
+        "kind": 6,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "class LanguageModel(nn.Module):\n    def __init__(self):\n        super().__init__()\n        # 创建一个词嵌入和位置嵌入的表\n        self.token_embedding_table = nn.Embedding(vocab_size, n_embd, device=device)\n        # token_embd = token_embedding_table(x)\n        self.position_embedding_table = nn.Embedding(block_size, n_embd, device=device)\n        self.network = nn.Linear(n_embd, vocab_size)\n    def forward(self, idx, targets=None):\n        B, T = idx.shape  # B= batch_size,T=block_size",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "get_batch",
+        "kind": 2,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "def get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果\n    y = torch.stack([data[i + 1 : i + block_size + 1] for i in ix])\n    x, y = x.to(device), y.to(device)\n    # token_list=x.tolist()",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "batch_size",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "batch_size = 3\n# 每个字符串的长度是多少\nblock_size = 16\nn_embd = 3\nwrap_width = 20\ndevice = \"cuda:0\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "block_size",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "block_size = 16\nn_embd = 3\nwrap_width = 20\ndevice = \"cuda:0\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "n_embd",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "n_embd = 3\nwrap_width = 20\ndevice = \"cuda:0\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "wrap_width",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "wrap_width = 20\ndevice = \"cuda:0\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "device",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "device = \"cuda:0\" if torch.cuda.is_available() else \"cpu\"\ntorch.manual_seed(1337)  # 设置随机种子\nfile_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "file_name",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "file_name = \"./SanGuoYanYi.txt\"\n# 读取文件\nwith open(file_name, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n# 按单个汉字或标点符号，将文本处理成有序、不重复的列表\nchars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "chars",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "chars = sorted(list(set(text)))\nvocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "vocab_size",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "vocab_size = len(chars)\n# 字符到索引之间的映射\nstoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "stoi",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "stoi = {ch: i for i, ch in enumerate(chars)}\nitos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "itos",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "itos = {i: ch for i, ch in enumerate(chars)}\n# 将字符串转成索引列表\nencode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "encode",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "encode = lambda str1: [stoi[c] for c in str1]\ndecode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "decode",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "decode = lambda list1: \"\".join([itos[element] for element in list1])\n# 训练、验证分组\n# 将字符转换为token索引向量\ndata = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "data = torch.tensor(encode(text), dtype=torch.long)\n# 设置分割线，分成训练集和测试集\nspilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "spilt",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "spilt = int(0.9 * len(data))\ntrain_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "train_data",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "train_data = data[:spilt]\ntest_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "test_data",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "test_data = data[spilt:]\nprint(f\"文件{file_name}读取完成\")\ndef get_batch(mode):\n    data = train_data if mode == \"train\" else test_data\n    # 生成batch_size个范围小于len(data)-block_size的随机数(起始点)\n    # 这里第二个参数必须是tuple of ints，所以才这么写\n    ix = torch.randint(len(data) - block_size, (batch_size,))\n    x = torch.stack([data[i : i + block_size] for i in ix])\n    # 准备一个比较草率的目标值，简单定义为原本字符串往右滑动一个字符的结果\n    y = torch.stack([data[i + 1 : i + block_size + 1] for i in ix])",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "model = LanguageModel()\nmodel = model.to(device)\nmax_new_tokens = 500\nstart_idx = random.randint(0, len(test_data) - block_size - max_new_tokens)\n# 上文内容\ncontext = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "model = model.to(device)\nmax_new_tokens = 500\nstart_idx = random.randint(0, len(test_data) - block_size - max_new_tokens)\n# 上文内容\ncontext = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "max_new_tokens",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "max_new_tokens = 500\nstart_idx = random.randint(0, len(test_data) - block_size - max_new_tokens)\n# 上文内容\ncontext = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "start_idx",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "start_idx = random.randint(0, len(test_data) - block_size - max_new_tokens)\n# 上文内容\ncontext = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "context",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "context = torch.zeros((1, block_size), dtype=torch.long, device=device)\ncontext[0, :] = test_data[start_idx : start_idx + block_size]\ncontext_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens\n]\nreal_next_tokens_str = decode(real_next_tokens[0].tolist())",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "context_str",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "context_str = decode(context[0].tolist())\nwrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens\n]\nreal_next_tokens_str = decode(real_next_tokens[0].tolist())\nwrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "wrapped_context_str",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "wrapped_context_str = textwrap.fill(context_str, width=wrap_width)\n# 真实下文\nreal_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens\n]\nreal_next_tokens_str = decode(real_next_tokens[0].tolist())\nwrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文\ngenerated_tokens = model.generate(context, max_new_tokens)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "real_next_tokens",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "real_next_tokens = torch.zeros((1, max_new_tokens), dtype=torch.long, device=device)\nreal_next_tokens[0, :] = test_data[\n    start_idx + block_size : start_idx + block_size + max_new_tokens\n]\nreal_next_tokens_str = decode(real_next_tokens[0].tolist())\nwrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文\ngenerated_tokens = model.generate(context, max_new_tokens)\ngenerated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "real_next_tokens_str",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "real_next_tokens_str = decode(real_next_tokens[0].tolist())\nwrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文\ngenerated_tokens = model.generate(context, max_new_tokens)\ngenerated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "wrapped_real_next_tokens_str",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "wrapped_real_next_tokens_str = textwrap.fill(real_next_tokens_str, width=wrap_width)\n# 生成下文\ngenerated_tokens = model.generate(context, max_new_tokens)\ngenerated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)\nprint(\"真实内容：\")",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "generated_tokens",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "generated_tokens = model.generate(context, max_new_tokens)\ngenerated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)\nprint(\"真实内容：\")\nprint(wrapped_real_next_tokens_str)\nx, y = get_batch(\"train\")",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "generated_str",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "generated_str = decode(generated_tokens[0].tolist())\nwrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)\nprint(\"真实内容：\")\nprint(wrapped_real_next_tokens_str)\nx, y = get_batch(\"train\")\nmodel = model.to(device)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "wrapped_generated_str",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "wrapped_generated_str = textwrap.fill(generated_str, width=wrap_width)\nprint(\"上文内容：\")\nprint(wrapped_context_str)\nprint(\"生成内容：\")\nprint(wrapped_generated_str)\nprint(\"真实内容：\")\nprint(wrapped_real_next_tokens_str)\nx, y = get_batch(\"train\")\nmodel = model.to(device)\nout = model(x)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "model = model.to(device)\nout = model(x)\nprint(out)\n# 词嵌入表，这里词表中有多少词就有多少embedding向量\n# print(\"-\" * 16, \"词表信息\", \"-\" * 16)\n# token_embedding_table = nn.Embedding(vocab_size, n_embd, device=device)\n# token_embd = token_embedding_table(x)\n# print(token_embd)\n# x_list = x.tolist()\n# for str_list in x_list:",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "out",
+        "kind": 5,
+        "importPath": "06_first_trained_model",
+        "description": "06_first_trained_model",
+        "peekOfCode": "out = model(x)\nprint(out)\n# 词嵌入表，这里词表中有多少词就有多少embedding向量\n# print(\"-\" * 16, \"词表信息\", \"-\" * 16)\n# token_embedding_table = nn.Embedding(vocab_size, n_embd, device=device)\n# token_embd = token_embedding_table(x)\n# print(token_embd)\n# x_list = x.tolist()\n# for str_list in x_list:\n#     decode_str = decode(str_list)",
+        "detail": "06_first_trained_model",
+        "documentation": {}
+    },
+    {
+        "label": "isTimeColumn",
+        "kind": 2,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "def isTimeColumn(col: str) -> bool:\n    \"\"\"判断列是否为时间列\"\"\"\n    col = col.lower()\n    if (\n        \"time\" in col\n        or \"date\" in col\n        or \"week\" in col\n        or \"month\" in col\n        or \"year\" in col\n        or \"时间\" in col",
+        "detail": "pre_echarts",
+        "documentation": {}
+    },
+    {
+        "label": "build_pie_chart",
+        "kind": 2,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "def build_pie_chart(dataset, itemName, value) -> dict[str, any]:\n    \"\"\"构建饼图配置\"\"\"\n    radius = \"50%\"\n    return {\n        **BASE_ECHART_OPTION,\n        \"dataset\": {\"source\": dataset},\n        \"series\": [\n            {\n                \"type\": \"pie\",\n                \"radius\": radius,",
+        "detail": "pre_echarts",
+        "documentation": {}
+    },
+    {
+        "label": "build_line_chart",
+        "kind": 2,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "def build_line_chart(dataset, xAxis, yAxis) -> dict[str, any]:\n    \"\"\"构建折线图配置\"\"\"\n    return {\n        **BASE_ECHART_OPTION,\n        \"dataset\": {\"source\": dataset},\n        \"xAxis\": {\"type\": \"category\", \"name\": xAxis, \"boundaryGap\": False},\n        \"yAxis\": {\"type\": \"value\"},\n        \"series\": [{\"type\": \"line\", \"encode\": {\"x\": xAxis, \"y\": y}} for y in yAxis],\n    }\ndef build_bar_chart(dataset, xAxis, yAxis) -> dict[str, any]:",
+        "detail": "pre_echarts",
+        "documentation": {}
+    },
+    {
+        "label": "build_bar_chart",
+        "kind": 2,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "def build_bar_chart(dataset, xAxis, yAxis) -> dict[str, any]:\n    \"\"\"构建柱状图配置\"\"\"\n    return {\n        **BASE_ECHART_OPTION,\n        \"dataset\": {\"source\": dataset},\n        \"xAxis\": {\"type\": \"category\", \"name\": xAxis, \"scale\": True},\n        \"yAxis\": {\"type\": \"value\"},\n        \"series\": [{\"type\": \"bar\", \"encode\": {\"x\": xAxis, \"y\": y}} for y in yAxis],\n    }\ndef build_scatter_chart(dataset, xAxis, yAxis) -> dict[str, any]:",
+        "detail": "pre_echarts",
+        "documentation": {}
+    },
+    {
+        "label": "build_scatter_chart",
+        "kind": 2,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "def build_scatter_chart(dataset, xAxis, yAxis) -> dict[str, any]:\n    \"\"\"构建散点图配置\"\"\"\n    return {\n        **BASE_ECHART_OPTION,\n        \"dataset\": {\"source\": dataset},\n        \"xAxis\": {\"type\": \"value\", \"name\": xAxis},\n        \"yAxis\": {\"type\": \"value\"},\n        \"series\": [{\"type\": \"scatter\", \"encode\": {\"x\": xAxis, \"y\": yAxis}}],\n    }\ndef data_pivot(data: list[dict], index_col: str, column_col: str, value_col: str):",
+        "detail": "pre_echarts",
+        "documentation": {}
+    },
+    {
+        "label": "data_pivot",
+        "kind": 2,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "def data_pivot(data: list[dict], index_col: str, column_col: str, value_col: str):\n    # 初始化一个字典来存储结果\n    pivot_data = {}\n    # 遍历数据并填充透视表\n    for row in data:\n        index = row[index_col]\n        column = row[column_col]\n        value = row[value_col]\n        # 如果index_val不在字典中，初始化\n        if index not in pivot_data:",
+        "detail": "pre_echarts",
+        "documentation": {}
+    },
+    {
+        "label": "handle_data",
+        "kind": 2,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "def handle_data(data: list[dict]) -> list[list[any]]:\n    \"\"\"处理数据，将数据转换为列表形式\"\"\"\n    # 1. 识别维度列\n    headers = list(data[0].keys())\n    # data = data[1:]\n    # 动态分析数据结构\n    date_col = \"\"\n    numeric_cols = []\n    categorical_cols = []\n    for col in headers:",
+        "detail": "pre_echarts",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "def main(json_string: str, chart_type: str) -> dict:\n    \"\"\"如果是趋势图，则提取时间列和数值列\n    如果是柱状图，则提取分类列和数值列\n    如果是饼图，则提取分类列和占比列\n    如果是散点图，则提取x轴和y轴列\n    \"\"\"\n    try:\n        data = json.loads(json_string)\n    except json.JSONDecodeError:\n        return {",
+        "detail": "pre_echarts",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_ECHART_OPTION",
+        "kind": 5,
+        "importPath": "pre_echarts",
+        "description": "pre_echarts",
+        "peekOfCode": "BASE_ECHART_OPTION = {\n    \"title\": {\"text\": \"\"},\n    \"tooltip\": {},\n    \"width\": 800,\n    \"grid\": {\n        \"left\": \"5%\",\n        \"right\": \"5%\",\n        \"top\": \"15%\",\n        \"bottom\": \"15%\",\n        \"containLabel\": True,",
+        "detail": "pre_echarts",
+        "documentation": {}
+    }
+]
